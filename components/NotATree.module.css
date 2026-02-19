@@ -1,0 +1,208 @@
+.notATree {
+  background: var(--color-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.notATree::after {
+  content: '01';
+  position: absolute;
+  top: 10%;
+  right: -5%;
+  font-size: 40vw;
+  font-weight: 900;
+  color: var(--color-grid);
+  opacity: 0.08;
+  z-index: 0;
+  line-height: 1;
+}
+
+.header {
+  margin-bottom: calc(var(--spacing-unit) * 10);
+  position: relative;
+  z-index: 2;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.title {
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 900;
+  margin-bottom: calc(var(--spacing-unit) * 4);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--color-text);
+  text-shadow: 
+    3px 3px 0 rgba(123, 237, 159, 0.5),
+    6px 6px 0 rgba(255, 159, 243, 0.3);
+}
+
+.accentBar {
+  width: 100%;
+  height: 8px;
+  background: linear-gradient(
+    to right,
+    var(--color-accent) 0%,
+    var(--color-accent-2) 50%,
+    var(--color-accent-3) 100%
+  );
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--spacing-unit) * 8);
+  margin-bottom: calc(var(--spacing-unit) * 10);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 5px solid var(--color-accent);
+  background: var(--color-bg-elevated);
+  box-shadow: 
+    10px 10px 0 rgba(255, 159, 243, 0.3),
+    20px 20px 0 rgba(254, 202, 87, 0.2);
+  border-radius: 8px;
+}
+
+.imageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--color-grid) 2px,
+    var(--color-grid) 4px
+  );
+  opacity: 0.1;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.imageInner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(123, 237, 159, 0.1) 0%,
+    rgba(255, 159, 243, 0.1) 100%
+  );
+}
+
+.structureGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  opacity: 0.1;
+}
+
+.structureLine {
+  width: 1px;
+  height: 100%;
+  background: var(--color-text);
+}
+
+.imageLabel {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 5);
+  justify-content: center;
+}
+
+.detailBlock h3 {
+  font-size: 1.125rem;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.detailBlock p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: calc(var(--spacing-unit) * 4);
+  padding: calc(var(--spacing-unit) * 8) 0;
+  border-top: 5px solid var(--color-accent);
+  border-bottom: 5px solid var(--color-accent-2);
+  position: relative;
+  z-index: 2;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-unit) * 1);
+  padding: calc(var(--spacing-unit) * 3);
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.specLabel {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  order: 2;
+}
+
+.specValue {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  order: 1;
+}
+
+@media (max-width: 968px) {
+  .content {
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing-unit) * 6);
+  }
+  
+  .imageContainer {
+    aspect-ratio: 16 / 10;
+  }
+}
