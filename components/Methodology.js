@@ -109,21 +109,21 @@ export default function Methodology() {
         </h2>
 
         <div className={styles.diagram}>
-          <svg className={styles.connections} ref={canvasRef}>
+          <svg className={styles.connections} ref={canvasRef} viewBox="0 0 100 100" preserveAspectRatio="none">
             {/* Connection lines between blocks */}
             <path
               className={styles.connectionPath}
-              d="M 50% 20%, L 50% 50%"
+              d="M 50 20 L 50 50"
               stroke="var(--color-accent)"
-              strokeWidth="1"
+              strokeWidth="0.5"
               fill="none"
               opacity="0.4"
             />
             <path
               className={styles.connectionPath}
-              d="M 50% 50%, L 50% 80%"
+              d="M 50 50 L 50 80"
               stroke="var(--color-accent)"
-              strokeWidth="1"
+              strokeWidth="0.5"
               fill="none"
               opacity="0.4"
             />
