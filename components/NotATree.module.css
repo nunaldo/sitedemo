@@ -98,6 +98,16 @@
     16px 16px 0 rgba(254, 202, 87, 0.2);
 }
 
+.panelImage {
+  z-index: 1;
+  opacity: 0.9;
+}
+
+/* If no image is available, Next.js will show error - hide it gracefully */
+.visualBox img[alt]:not([src]) {
+  display: none;
+}
+
 .visualLabel {
   position: absolute;
   bottom: calc(var(--spacing-unit) * 2);
@@ -301,6 +311,11 @@
   box-shadow: 
     8px 8px 0 rgba(255, 159, 243, 0.3),
     16px 16px 0 rgba(254, 202, 87, 0.2);
+}
+
+.dataPreview .panelImage {
+  z-index: 1;
+  opacity: 0.85;
 }
 
 .dataStream {

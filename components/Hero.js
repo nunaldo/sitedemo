@@ -89,7 +89,7 @@ export default function Hero() {
       
       <div className={styles.content}>
         <h1 ref={titleRef} className={styles.title}>
-          EXPERIMENTAL URBAN INFRASTRUCTURE
+          UM NOME BUÉ FIXE E INOVADOR
         </h1>
         
         <div className={styles.subtitle}>
@@ -99,7 +99,7 @@ export default function Hero() {
           <span className="subtitle-line">×</span>
           <span className="subtitle-line">ENERGY</span>
           <span className="subtitle-line">×</span>
-          <span className="subtitle-line">PUBLIC SPACE</span>
+          <span className="subtitle-line">DATA</span>
         </div>
       </div>
 
