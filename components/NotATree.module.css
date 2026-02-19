@@ -6,11 +6,38 @@
   background: var(--color-bg);
 }
 
+.fixedTitle {
+  position: fixed;
+  top: calc(var(--spacing-unit) * 4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.fixedTitle h2 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--color-text);
+  text-align: center;
+  text-shadow: 
+    4px 4px 0 rgba(123, 237, 159, 0.6),
+    8px 8px 0 rgba(255, 159, 243, 0.4),
+    12px 12px 0 rgba(254, 202, 87, 0.2);
+  margin: 0;
+  white-space: nowrap;
+  mix-blend-mode: multiply;
+  opacity: 0.95;
+}
+
 .horizontalWrapper {
   display: flex;
   height: 100vh;
   width: fit-content;
   will-change: transform;
+  padding-top: calc(var(--spacing-unit) * 15);
 }
 
 .panel {
@@ -352,39 +379,22 @@
 
 /* Live Data Button */
 .liveDataButton {
-  display: inline-flex;
-  align-items: center;
-  gap: calc(var(--spacing-unit) * 2);
-  padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 6);
-  background: var(--color-accent);
-  color: var(--color-bg);
-  font-size: 1.125rem;
-  font-weight: 900;
-  letter-spacing: 0.1em;
-  text-decoration: none;
-  border-radius: 6px;
+  display: inline-block;
   margin-top: calc(var(--spacing-unit) * 4);
   transition: all 0.3s ease;
-  border: 3px solid var(--color-accent);
-  box-shadow: 
-    4px 4px 0 rgba(255, 159, 243, 0.5),
-    8px 8px 0 rgba(254, 202, 87, 0.3);
+  cursor: pointer;
 }
 
 .liveDataButton:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 
-    6px 6px 0 rgba(255, 159, 243, 0.6),
-    12px 12px 0 rgba(254, 202, 87, 0.4);
+  filter: drop-shadow(6px 6px 0 rgba(255, 159, 243, 0.6)) 
+          drop-shadow(12px 12px 0 rgba(254, 202, 87, 0.4));
 }
 
-.buttonArrow {
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-}
-
-.liveDataButton:hover .buttonArrow {
-  transform: translateX(4px);
+.liveDataButton img {
+  display: block;
+  max-width: 400px;
+  height: auto;
 }
 
 /* Responsive */

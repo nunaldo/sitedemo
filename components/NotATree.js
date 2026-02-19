@@ -72,6 +72,11 @@ export default function NotATree() {
 
   return (
     <section ref={sectionRef} className={styles.notATree}>
+      {/* Fixed Title */}
+      <div className={styles.fixedTitle}>
+        <h2>NOT A TREE</h2>
+      </div>
+      
       <div ref={horizontalRef} className={styles.horizontalWrapper}>
         
         {/* Panel 1: First Drawing / Concept */}
@@ -81,9 +86,8 @@ export default function NotATree() {
             <h3>THE FIRST SKETCH</h3>
             <div className="panel-content">
               <div className={styles.visualBox}>
-                {/* Add your sketch photo: public/images/sketch.jpg */}
                 <Image 
-                  src="/images/sketch.jpg" 
+                  src="/images/mat1.jpeg" 
                   alt="Initial Concept Sketch"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -115,10 +119,9 @@ export default function NotATree() {
             <h3>REFINEMENT</h3>
             <div className="panel-content">
               <div className={styles.visualBox}>
-                {/* Add your blueprint photo: public/images/blueprint.jpg */}
                 <Image 
-                  src="/images/blueprint.jpg" 
-                  alt="Technical Blueprint"
+                  src="/images/mod1.jpeg" 
+                  alt="3D Modulation"
                   fill
                   style={{ objectFit: 'cover' }}
                   className={styles.panelImage}
@@ -146,9 +149,8 @@ export default function NotATree() {
             <h3>NOT A TREE</h3>
             <div className="panel-content">
               <div className={styles.visualBox}>
-                {/* Add your installation photo: public/images/installation.jpg */}
                 <Image 
-                  src="/images/installation.jpg" 
+                  src="/images/im1.jpeg" 
                   alt="Not A Tree Installation"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -244,9 +246,8 @@ export default function NotATree() {
             <h3>SEE IT IN ACTION</h3>
             <div className="panel-content">
               <div className={styles.dataPreview}>
-                {/* Add your data visualization photo: public/images/data.jpg */}
                 <Image 
-                  src="/images/data.jpg" 
+                  src="/images/im2.jpeg" 
                   alt="Live Data Visualization"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -265,8 +266,13 @@ export default function NotATree() {
                 <strong> Live environmental readings from the urban core.</strong>
               </p>
               <a href="https://notatree.site/" target="_blank" rel="noopener noreferrer" className={styles.liveDataButton}>
-                <span>VIEW LIVE DATA</span>
-                <span className={styles.buttonArrow}>→</span>
+                <Image 
+                  src="/images/button.png" 
+                  alt="View Live Data"
+                  width={300}
+                  height={80}
+                  style={{ width: 'auto', height: 'auto', maxWidth: '100%' }}
+                />
               </a>
             </div>
           </div>
