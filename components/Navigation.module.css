@@ -1,0 +1,215 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Hamburger Button */
+.hamburger {
+  position: fixed;
+  top: calc(var(--spacing-unit) * 4);
+  left: calc(var(--spacing-unit) * 4);
+  width: 60px;
+  height: 60px;
+  background: var(--color-accent);
+  border: 3px solid var(--color-text);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 4px 4px 0 rgba(255, 159, 243, 0.5);
+}
+
+.hamburger:hover {
+  background: var(--color-accent-2);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 rgba(255, 159, 243, 0.5);
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Menu Overlay */
+.menuOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100vh;
+  background: var(--color-bg-elevated);
+  border-right: 3px solid var(--color-accent);
+  z-index: 1001;
+  overflow-y: auto;
+  box-shadow: 
+    0 0 0 3px var(--color-accent-2),
+    20px 0 40px rgba(0, 0, 0, 0.1);
+}
+
+.menuContent {
+  padding: calc(var(--spacing-unit) * 4);
+  padding-top: calc(var(--spacing-unit) * 12);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuHeader {
+  margin-bottom: calc(var(--spacing-unit) * 6);
+  padding-bottom: calc(var(--spacing-unit) * 4);
+  border-bottom: 2px solid var(--color-grid);
+}
+
+.menuHeader h3 {
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: calc(var(--spacing-unit) * 1);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.tagline {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Menu List */
+.menuList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.menuList li {
+  margin-bottom: calc(var(--spacing-unit) * 2);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 3);
+  background: var(--color-bg);
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateX(8px);
+  box-shadow: 4px 4px 0 rgba(255, 159, 243, 0.3);
+}
+
+.itemNumber {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  font-family: monospace;
+  min-width: 40px;
+}
+
+.menuItem:hover .itemNumber {
+  color: var(--color-text);
+}
+
+.itemLabel {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Menu Footer */
+.menuFooter {
+  margin-top: auto;
+  padding-top: calc(var(--spacing-unit) * 4);
+  border-top: 2px solid var(--color-grid);
+}
+
+.footerText {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 1);
+  line-height: 1.4;
+}
+
+.footerSubtext {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Backdrop */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(45, 52, 54, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menuOverlay {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .hamburger {
+    width: 50px;
+    height: 50px;
+    top: calc(var(--spacing-unit) * 3);
+    left: calc(var(--spacing-unit) * 3);
+  }
+
+  .hamburger span {
+    width: 24px;
+  }
+}

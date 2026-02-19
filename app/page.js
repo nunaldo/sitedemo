@@ -8,18 +8,30 @@ import Roadmap from '@/components/Roadmap'
 import Contact from '@/components/Contact'
 import SmoothScroll from '@/components/SmoothScroll'
 import CustomCursor from '@/components/CustomCursor'
+import Navigation from '@/components/Navigation'
 
 export default function Home() {
   return (
     <SmoothScroll>
       <CustomCursor />
+      <Navigation />
       <main>
         <Hero />
-        <System />
-        <NotATree />
-        <Methodology />
-        <Roadmap />
-        <Contact />
+        <div id="system">
+          <System />
+        </div>
+        <div id="installations">
+          <NotATree />
+        </div>
+        <div id="methodology">
+          <Methodology />
+        </div>
+        <div id="roadmap">
+          <Roadmap />
+        </div>
+        <div id="contact">
+          <Contact />
+        </div>
       </main>
     </SmoothScroll>
   )

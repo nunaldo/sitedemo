@@ -1,8 +1,8 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Experimental Urban Infrastructure',
-  description: 'Engineering. Energy. Data. Public Space.',
+  title: 'UM NOME BUÉ FIXE E INOVADOR',
+  description: 'Engineering. Energy. Data. Art.',
 }
 
 export default function RootLayout({ children }) {

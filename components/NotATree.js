@@ -9,73 +9,60 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function NotATree() {
   const sectionRef = useRef(null)
-  const titleRef = useRef(null)
-  const imageRef = useRef(null)
-  const detailsRef = useRef([])
+  const horizontalRef = useRef(null)
+  const panelsRef = useRef([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title reveal
-      gsap.from(titleRef.current, {
+      const panels = panelsRef.current
+      
+      // Horizontal scroll animation
+      const totalScroll = horizontalRef.current.scrollWidth - window.innerWidth
+      
+      gsap.to(horizontalRef.current, {
+        x: -totalScroll,
+        ease: 'none',
         scrollTrigger: {
-          trigger: titleRef.current,
-          start: 'top 80%',
-          end: 'top 50%',
-          scrub: 1.5
-        },
-        opacity: 0,
-        x: -80
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: () => `+=${totalScroll * 1.5}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
       })
 
-      // Image container parallax
-      gsap.to(imageRef.current, {
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1.5
-        },
-        y: -100
-      })
-
-      // Image reveal
-      const imageInner = imageRef.current.querySelector(`.${styles.imageInner}`)
-      gsap.from(imageInner, {
-        scrollTrigger: {
-          trigger: imageRef.current,
-          start: 'top 80%',
-          end: 'top 30%',
-          scrub: 2
-        },
-        scale: 1.2,
-        opacity: 0
-      })
-
-      // Details stagger
-      detailsRef.current.forEach((detail, index) => {
-        gsap.from(detail, {
-          scrollTrigger: {
-            trigger: detail,
-            start: 'top 85%',
-            end: 'top 60%',
-            scrub: 1.5
-          },
-          opacity: 0,
-          y: 40
-        })
-      })
-
-      // Accent line animation
-      const accentLine = document.querySelector(`.${styles.accentLine}`)
-      gsap.from(accentLine, {
-        scrollTrigger: {
-          trigger: accentLine,
-          start: 'top 85%',
-          end: 'top 60%',
-          scrub: 2
-        },
-        scaleX: 0,
-        transformOrigin: 'left center'
+      // Individual panel animations
+      panels.forEach((panel, index) => {
+        const heading = panel.querySelector('h3')
+        const content = panel.querySelector('.panel-content')
+        
+        if (heading) {
+          gsap.from(heading, {
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: () => `top+=${index * 200} top`,
+              end: () => `top+=${index * 200 + 400} top`,
+              scrub: 1
+            },
+            opacity: 0,
+            y: 50
+          })
+        }
+        
+        if (content) {
+          gsap.from(content, {
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: () => `top+=${index * 200 + 100} top`,
+              end: () => `top+=${index * 200 + 500} top`,
+              scrub: 1
+            },
+            opacity: 0,
+            y: 30
+          })
+        }
       })
     }, sectionRef)
 
@@ -84,86 +71,174 @@ export default function NotATree() {
 
   return (
     <section ref={sectionRef} className={styles.notATree}>
-      <div className="container">
-        <div className={styles.header}>
-          <div className={styles.label}>INSTALLATION_01</div>
-          <h2 ref={titleRef} className={styles.title}>
-            NOT A
-            <br />
-            TREE
-          </h2>
-          <div className={styles.accentBar} />
-        </div>
-
-        <div className={styles.content}>
-          <div ref={imageRef} className={styles.imageContainer}>
-            <div className={styles.imageInner}>
-              {/* Placeholder for actual image */}
-              <div className={styles.imagePlaceholder}>
-                <div className={styles.structureGrid}>
-                  {Array.from({ length: 12 }).map((_, i) => (
-                    <div key={i} className={styles.structureLine} />
+      <div ref={horizontalRef} className={styles.horizontalWrapper}>
+        
+        {/* Panel 1: First Drawing / Concept */}
+        <div ref={el => panelsRef.current[0] = el} className={styles.panel}>
+          <div className={styles.panelInner}>
+            <div className={styles.panelLabel}>STAGE_01</div>
+            <h3>THE FIRST SKETCH</h3>
+            <div className="panel-content">
+              <div className={styles.visualBox}>
+                <div className={styles.sketchLines}>
+                  {Array.from({ length: 20 }).map((_, i) => (
+                    <div key={i} className={styles.sketchLine} style={{ 
+                      width: `${Math.random() * 60 + 20}%`,
+                      left: `${Math.random() * 40}%`,
+                      top: `${i * 5}%`
+                    }} />
                   ))}
                 </div>
-                <div className={styles.imageLabel}>Installation Site</div>
+                <div className={styles.visualLabel}>Initial Concept</div>
               </div>
-            </div>
-          </div>
-
-          <div className={styles.details}>
-            <div
-              ref={(el) => (detailsRef.current[0] = el)}
-              className={styles.detailBlock}
-            >
-              <h3>PUBLIC INTERACTION</h3>
-              <p>
-                Installed in active urban circulation. No interpretation needed.
-                <strong> The structure exists. The function is apparent.</strong>
-              </p>
-            </div>
-
-            <div
-              ref={(el) => (detailsRef.current[1] = el)}
-              className={styles.detailBlock}
-            >
-              <h3>PRESENCE</h3>
-              <p>
-                Seven meters tall. Modular assembly. Weatherproof enclosures.
-                <strong> Visible sensing. Visible power. Visible data.</strong>
-              </p>
-            </div>
-
-            <div
-              ref={(el) => (detailsRef.current[2] = el)}
-              className={styles.detailBlock}
-            >
-              <h3>ART × ENGINEERING</h3>
-              <p>
-                Not ornament. Not sculpture. <strong>Operational technology as artistic expression.</strong>
-                Form follows function. Aesthetic emerges from engineering constraint.
+              <p className={styles.panelText}>
+                It started with a question: <strong>What if urban infrastructure was honest?</strong> 
+                Raw sketches. Napkin drawings. The idea that technology doesn't need to hide.
               </p>
             </div>
           </div>
         </div>
 
-        <div className={styles.specs}>
-          <div className={styles.specItem}>
-            <span className={styles.specValue}>URBAN CORE</span>
-            <span className={styles.specLabel}>Location</span>
-          </div>
-          <div className={styles.specItem}>
-            <span className={styles.specValue}>OPERATIONAL</span>
-            <span className={styles.specLabel}>Status</span>
-          </div>
-          <div className={styles.specItem}>
-            <span className={styles.specValue}>12 ACTIVE</span>
-            <span className={styles.specLabel}>Sensors</span>
-          </div>
-          <div className={styles.specItem}>
-            <span className={styles.specValue}>99.4%</span>
-            <span className={styles.specLabel}>Uptime</span>
+        {/* Panel 2: Second Iteration */}
+        <div ref={el => panelsRef.current[1] = el} className={styles.panel}>
+          <div className={styles.panelInner}>
+            <div className={styles.panelLabel}>STAGE_02</div>
+            <h3>REFINEMENT</h3>
+            <div className="panel-content">
+              <div className={styles.visualBox}>
+                <div className={styles.blueprintGrid}>
+                  {Array.from({ length: 16 }).map((_, i) => (
+                    <div key={i} className={styles.blueprintCell} />
+                  ))}
+                </div>
+                <div className={styles.visualLabel}>Technical Drawing</div>
+              </div>
+              <p className={styles.panelText}>
+                Engineering constraints became design features. 
+                <strong> Modular assembly. Weatherproof enclosures. Visible power routing.</strong>
+                Form follows function. Beauty emerges from necessity.
+              </p>
+            </div>
           </div>
         </div>
+
+        {/* Panel 3: End Product / Built */}
+        <div ref={el => panelsRef.current[2] = el} className={styles.panel}>
+          <div className={styles.panelInner}>
+            <div className={styles.panelLabel}>STAGE_03</div>
+            <h3>NOT A TREE</h3>
+            <div className="panel-content">
+              <div className={styles.visualBox}>
+                <div className={styles.installationView}>
+                  <div className={styles.structureOutline}>
+                    <div className={styles.sensor} style={{ top: '20%', left: '30%' }} />
+                    <div className={styles.sensor} style={{ top: '40%', left: '50%' }} />
+                    <div className={styles.sensor} style={{ top: '60%', left: '35%' }} />
+                    <div className={styles.sensor} style={{ top: '80%', left: '55%' }} />
+                  </div>
+                </div>
+                <div className={styles.visualLabel}>Installed Structure</div>
+              </div>
+              <p className={styles.panelText}>
+                Seven meters tall. Twelve active sensors. 
+                <strong> Air quality. Temperature. Noise. Movement. Weather.</strong>
+                Standing in active urban space. No interpretation needed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Panel 4: What We Want */}
+        <div ref={el => panelsRef.current[3] = el} className={styles.panel}>
+          <div className={styles.panelInner}>
+            <div className={styles.panelLabel}>VISION</div>
+            <h3>WHAT WE WANT</h3>
+            <div className="panel-content">
+              <div className={styles.visionGrid}>
+                <div className={styles.visionItem}>
+                  <span className={styles.visionIcon}>◆</span>
+                  <span>Public technology that doesn't apologize</span>
+                </div>
+                <div className={styles.visionItem}>
+                  <span className={styles.visionIcon}>◆</span>
+                  <span>Infrastructure as artistic expression</span>
+                </div>
+                <div className={styles.visionItem}>
+                  <span className={styles.visionIcon}>◆</span>
+                  <span>Operational beauty in urban space</span>
+                </div>
+                <div className={styles.visionItem}>
+                  <span className={styles.visionIcon}>◆</span>
+                  <span>Data collection that citizens can see</span>
+                </div>
+              </div>
+              <p className={styles.panelText}>
+                <strong>Art × Engineering × Public Space.</strong> Not decoration. Not surveillance. 
+                Visible systems serving visible functions.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Panel 5: What We Expect */}
+        <div ref={el => panelsRef.current[4] = el} className={styles.panel}>
+          <div className={styles.panelInner}>
+            <div className={styles.panelLabel}>IMPACT</div>
+            <h3>WHAT WE EXPECT</h3>
+            <div className="panel-content">
+              <div className={styles.expectGrid}>
+                <div className={styles.expectItem}>
+                  <span className={styles.expectValue}>99.4%</span>
+                  <span className={styles.expectLabel}>Uptime</span>
+                </div>
+                <div className={styles.expectItem}>
+                  <span className={styles.expectValue}>12</span>
+                  <span className={styles.expectLabel}>Active Sensors</span>
+                </div>
+                <div className={styles.expectItem}>
+                  <span className={styles.expectValue}>24/7</span>
+                  <span className={styles.expectLabel}>Data Stream</span>
+                </div>
+                <div className={styles.expectItem}>
+                  <span className={styles.expectValue}>∞</span>
+                  <span className={styles.expectLabel}>Public Access</span>
+                </div>
+              </div>
+              <p className={styles.panelText}>
+                Continuous operation. Transparent data. Public accountability.
+                <strong> Technology that works. Infrastructure that doesn't fail.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Panel 6: Live Data CTA */}
+        <div ref={el => panelsRef.current[5] = el} className={styles.panel}>
+          <div className={styles.panelInner}>
+            <div className={styles.panelLabel}>LIVE_NOW</div>
+            <h3>SEE IT IN ACTION</h3>
+            <div className="panel-content">
+              <div className={styles.dataPreview}>
+                <div className={styles.dataStream}>
+                  <div className={styles.dataLine} style={{ animationDelay: '0s' }} />
+                  <div className={styles.dataLine} style={{ animationDelay: '0.3s' }} />
+                  <div className={styles.dataLine} style={{ animationDelay: '0.6s' }} />
+                  <div className={styles.dataLine} style={{ animationDelay: '0.9s' }} />
+                </div>
+                <div className={styles.visualLabel}>Real-time Data</div>
+              </div>
+              <p className={styles.panelText}>
+                Watch the sensors work. See the data flow. 
+                <strong> Live environmental readings from the urban core.</strong>
+              </p>
+              <a href="#" className={styles.liveDataButton}>
+                <span>VIEW LIVE DATA</span>
+                <span className={styles.buttonArrow}>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   )
