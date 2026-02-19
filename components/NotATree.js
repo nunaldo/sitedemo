@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './NotATree.module.css'
@@ -72,7 +71,7 @@ export default function NotATree() {
 
   return (
     <section ref={sectionRef} className={styles.notATree}>
-      {/* Fixed Title */}
+      {/* Fixed Title - only visible during this section */}
       <div className={styles.fixedTitle}>
         <h2>NOT A TREE</h2>
       </div>
@@ -86,11 +85,9 @@ export default function NotATree() {
             <h3>THE FIRST SKETCH</h3>
             <div className="panel-content">
               <div className={styles.visualBox}>
-                <Image 
+                <img 
                   src="/images/mat1.jpeg" 
                   alt="Initial Concept Sketch"
-                  fill
-                  style={{ objectFit: 'cover' }}
                   className={styles.panelImage}
                 />
                 <div className={styles.sketchLines}>
@@ -119,11 +116,9 @@ export default function NotATree() {
             <h3>REFINEMENT</h3>
             <div className="panel-content">
               <div className={styles.visualBox}>
-                <Image 
+                <img 
                   src="/images/mod1.jpeg" 
                   alt="3D Modulation"
-                  fill
-                  style={{ objectFit: 'cover' }}
                   className={styles.panelImage}
                 />
                 <div className={styles.blueprintGrid}>
@@ -149,11 +144,9 @@ export default function NotATree() {
             <h3>NOT A TREE</h3>
             <div className="panel-content">
               <div className={styles.visualBox}>
-                <Image 
+                <img 
                   src="/images/im1.jpeg" 
                   alt="Not A Tree Installation"
-                  fill
-                  style={{ objectFit: 'cover' }}
                   className={styles.panelImage}
                 />
                 <div className={styles.installationView}>
@@ -246,11 +239,9 @@ export default function NotATree() {
             <h3>SEE IT IN ACTION</h3>
             <div className="panel-content">
               <div className={styles.dataPreview}>
-                <Image 
+                <img 
                   src="/images/im2.jpeg" 
                   alt="Live Data Visualization"
-                  fill
-                  style={{ objectFit: 'cover' }}
                   className={styles.panelImage}
                 />
                 <div className={styles.dataStream}>
@@ -266,12 +257,9 @@ export default function NotATree() {
                 <strong> Live environmental readings from the urban core.</strong>
               </p>
               <a href="https://notatree.site/" target="_blank" rel="noopener noreferrer" className={styles.liveDataButton}>
-                <Image 
+                <img 
                   src="/images/button.png" 
                   alt="View Live Data"
-                  width={300}
-                  height={80}
-                  style={{ width: 'auto', height: 'auto', maxWidth: '100%' }}
                 />
               </a>
             </div>
