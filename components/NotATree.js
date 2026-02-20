@@ -90,15 +90,6 @@ export default function NotATree() {
                   alt="Initial Concept Sketch"
                   className={styles.panelImage}
                 />
-                <div className={styles.sketchLines}>
-                  {Array.from({ length: 20 }).map((_, i) => (
-                    <div key={i} className={styles.sketchLine} style={{ 
-                      width: `${Math.random() * 60 + 20}%`,
-                      left: `${Math.random() * 40}%`,
-                      top: `${i * 5}%`
-                    }} />
-                  ))}
-                </div>
                 <div className={styles.visualLabel}>Initial Concept</div>
               </div>
               <p className={styles.panelText}>
@@ -121,11 +112,6 @@ export default function NotATree() {
                   alt="3D Modulation"
                   className={styles.panelImage}
                 />
-                <div className={styles.blueprintGrid}>
-                  {Array.from({ length: 16 }).map((_, i) => (
-                    <div key={i} className={styles.blueprintCell} />
-                  ))}
-                </div>
                 <div className={styles.visualLabel}>Technical Drawing</div>
               </div>
               <p className={styles.panelText}>
@@ -149,14 +135,6 @@ export default function NotATree() {
                   alt="Not A Tree Installation"
                   className={styles.panelImage}
                 />
-                <div className={styles.installationView}>
-                  <div className={styles.structureOutline}>
-                    <div className={styles.sensor} style={{ top: '20%', left: '30%' }} />
-                    <div className={styles.sensor} style={{ top: '40%', left: '50%' }} />
-                    <div className={styles.sensor} style={{ top: '60%', left: '35%' }} />
-                    <div className={styles.sensor} style={{ top: '80%', left: '55%' }} />
-                  </div>
-                </div>
                 <div className={styles.visualLabel}>Installed Structure</div>
               </div>
               <p className={styles.panelText}>
@@ -244,12 +222,6 @@ export default function NotATree() {
                   alt="Live Data Visualization"
                   className={styles.panelImage}
                 />
-                <div className={styles.dataStream}>
-                  <div className={styles.dataLine} style={{ animationDelay: '0s' }} />
-                  <div className={styles.dataLine} style={{ animationDelay: '0.3s' }} />
-                  <div className={styles.dataLine} style={{ animationDelay: '0.6s' }} />
-                  <div className={styles.dataLine} style={{ animationDelay: '0.9s' }} />
-                </div>
                 <div className={styles.visualLabel}>Real-time Data</div>
               </div>
               <p className={styles.panelText}>
