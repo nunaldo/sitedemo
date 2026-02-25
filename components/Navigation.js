@@ -7,8 +7,9 @@ import styles from './Navigation.module.css'
 const menuItems = [
   { label: 'System Overview', href: '#system', section: 'system' },
   { label: 'Installations', href: '#installations', section: 'installations' },
+  { label: 'Designs', href: '#designs', section: 'designs' },
   { label: 'Methodology', href: '#methodology', section: 'methodology' },
-  { label: 'Roadmap', href: '#roadmap', section: 'roadmap' },
+  { label: 'Team', href: '#team', section: 'team' },
   { label: 'Partner With Us', href: '#contact', section: 'contact' }
 ]
 

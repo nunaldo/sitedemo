@@ -89,7 +89,7 @@ export default function Hero() {
       
       <div className={styles.content}>
         <h1 ref={titleRef} className={styles.title}>
-          UM NOME BUÉ FIXE E INOVADOR
+          UM NOME FIXE E INOVADOR
         </h1>
         
         <div className={styles.subtitle}>

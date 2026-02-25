@@ -35,7 +35,7 @@
   height: 100vh;
   width: fit-content;
   will-change: transform;
-  padding-top: calc(var(--spacing-unit) * 8);
+  padding-top: 0;
 }
 
 .panel {
@@ -45,7 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(var(--spacing-unit) * 4);
+  padding: calc(var(--spacing-unit) * 1);
   position: relative;
 }
 
@@ -78,7 +78,7 @@
   color: var(--color-accent);
   letter-spacing: 0.2em;
   font-weight: 700;
-  margin-bottom: calc(var(--spacing-unit) * 2);
+  margin-bottom: 0;
   text-transform: uppercase;
 }
 
@@ -88,7 +88,7 @@
   letter-spacing: -0.04em;
   line-height: 0.9;
   color: var(--color-text);
-  margin-bottom: calc(var(--spacing-unit) * 4);
+  margin-bottom: 0;
   text-shadow: 
     3px 3px 0 rgba(123, 237, 159, 0.5),
     6px 6px 0 rgba(255, 159, 243, 0.3);
@@ -98,7 +98,7 @@
   font-size: 1.125rem;
   line-height: 1.8;
   color: var(--color-text-muted);
-  margin-top: calc(var(--spacing-unit) * 4);
+  margin-top: calc(var(--spacing-unit) * 1);
 }
 
 .panelText strong {
@@ -106,18 +106,23 @@
   font-weight: 700;
 }
 
+.panelContent {
+  margin: 0;
+  padding: 0;
+}
+
 /* Visual Boxes */
 .visualBox {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 400px;
   background: var(--color-bg-elevated);
-  border: 3px solid var(--color-accent);
-  border-radius: 8px;
+  border: 2px solid var(--color-accent);
+  border-radius: 6px;
   position: relative;
   overflow: hidden;
   box-shadow: 
-    8px 8px 0 rgba(255, 159, 243, 0.3),
-    16px 16px 0 rgba(254, 202, 87, 0.2);
+    4px 4px 0 rgba(255, 159, 243, 0.3),
+    8px 8px 0 rgba(254, 202, 87, 0.2);
 }
 
 .panelImage {
@@ -325,7 +330,7 @@
 /* Stage 6: Data Preview */
 .dataPreview {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 400px;
   background: var(--color-bg-elevated);
   border: 3px solid var(--color-accent);
   border-radius: 8px;
@@ -389,20 +394,28 @@
 .liveDataButton {
   display: inline-block;
   margin-top: calc(var(--spacing-unit) * 4);
+  padding: calc(var(--spacing-unit) * 3) calc(var(--spacing-unit) * 6);
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 8px;
+  border: 3px solid var(--color-accent-secondary);
   transition: all 0.3s ease;
   cursor: pointer;
+  box-shadow: 
+    4px 4px 0 rgba(255, 159, 243, 0.4),
+    8px 8px 0 rgba(254, 202, 87, 0.3);
 }
 
 .liveDataButton:hover {
   transform: translate(-2px, -2px);
-  filter: drop-shadow(6px 6px 0 rgba(255, 159, 243, 0.6)) 
-          drop-shadow(12px 12px 0 rgba(254, 202, 87, 0.4));
-}
-
-.liveDataButton img {
-  display: block;
-  max-width: 400px;
-  height: auto;
+  box-shadow: 
+    6px 6px 0 rgba(255, 159, 243, 0.6),
+    12px 12px 0 rgba(254, 202, 87, 0.4);
 }
 
 /* Responsive */
@@ -423,8 +436,11 @@
     grid-template-columns: 1fr;
   }
 
-  .visualBox,
+  .visualBox {
+    height: 350px;
+  }
+  
   .dataPreview {
-    aspect-ratio: 1;
+    height: 300px;
   }
 }

@@ -1,0 +1,100 @@
+.team {
+  min-height: 100vh;
+  padding: var(--section-padding) 0;
+  background: var(--color-bg);
+  position: relative;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing-unit) * 4);
+}
+
+.title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 12);
+  text-align: center;
+  text-shadow: 
+    4px 4px 0 rgba(123, 237, 159, 0.4),
+    8px 8px 0 rgba(255, 159, 243, 0.2);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: calc(var(--spacing-unit) * 6);
+  margin-bottom: calc(var(--spacing-unit) * 10);
+}
+
+.memberCard {
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-accent);
+  border-radius: 12px;
+  padding: calc(var(--spacing-unit) * 6);
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 
+    4px 4px 0 rgba(255, 159, 243, 0.3),
+    8px 8px 0 rgba(254, 202, 87, 0.2);
+}
+
+.memberCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 
+    6px 6px 0 rgba(255, 159, 243, 0.4),
+    12px 12px 0 rgba(254, 202, 87, 0.3);
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto calc(var(--spacing-unit) * 4);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--color-bg);
+  border: 3px solid var(--color-accent-secondary);
+}
+
+.memberName {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  text-transform: uppercase;
+}
+
+.memberRole {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: calc(var(--spacing-unit) * 4);
+  }
+  
+  .memberCard {
+    padding: calc(var(--spacing-unit) * 4);
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    font-size: 2.5rem;
+  }
+}

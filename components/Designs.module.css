@@ -1,0 +1,104 @@
+.designs {
+  min-height: 100vh;
+  padding: var(--section-padding) 0;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing-unit) * 4);
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 16);
+  text-align: center;
+  text-shadow: 
+    4px 4px 0 rgba(123, 237, 159, 0.5),
+    8px 8px 0 rgba(255, 159, 243, 0.3);
+}
+
+.ctaBox {
+  background: var(--color-bg-elevated);
+  border: 3px solid var(--color-accent);
+  border-radius: 16px;
+  padding: calc(var(--spacing-unit) * 10);
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 
+    8px 8px 0 rgba(255, 159, 243, 0.3),
+    16px 16px 0 rgba(254, 202, 87, 0.2);
+  transition: all 0.3s ease;
+}
+
+.ctaBox:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 
+    12px 12px 0 rgba(255, 159, 243, 0.4),
+    24px 24px 0 rgba(254, 202, 87, 0.3);
+}
+
+.ctaTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-text);
+  margin-bottom: calc(var(--spacing-unit) * 6);
+  text-shadow: 
+    2px 2px 0 rgba(123, 237, 159, 0.4),
+    4px 4px 0 rgba(255, 159, 243, 0.2);
+}
+
+.ctaText {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin-bottom: calc(var(--spacing-unit) * 4);
+}
+
+.ctaText strong {
+  color: var(--color-text);
+  font-weight: 700;
+  display: block;
+  margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.ctaSubtext {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .title {
+    margin-bottom: calc(var(--spacing-unit) * 10);
+  }
+  
+  .ctaBox {
+    padding: calc(var(--spacing-unit) * 6);
+  }
+  
+  .ctaTitle {
+    margin-bottom: calc(var(--spacing-unit) * 4);
+  }
+  
+  .ctaText {
+    font-size: 1.25rem;
+  }
+  
+  .ctaSubtext {
+    font-size: 1rem;
+  }
+}

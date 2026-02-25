@@ -1,7 +1,7 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'UM NOME BUÉ FIXE E INOVADOR',
+  title: 'UM NOME FIXE E INOVADOR',
   description: 'Engineering. Energy. Data. Art.',
 }
 

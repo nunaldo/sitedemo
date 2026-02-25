@@ -12,61 +12,50 @@ export default function NotATree() {
   const horizontalRef = useRef(null)
   const panelsRef = useRef([])
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const panels = panelsRef.current
-      
-      // Horizontal scroll animation
-      const totalScroll = horizontalRef.current.scrollWidth - window.innerWidth
-      
-      gsap.to(horizontalRef.current, {
-        x: -totalScroll,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${totalScroll * 1.5}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true
-        }
-      })
-
-      // Individual panel animations
-      panels.forEach((panel, index) => {
-        const heading = panel.querySelector('h3')
-        const content = panel.querySelector('.panel-content')
+  useEffect(() => {    
+    const initScrollTrigger = () => {
+      const ctx = gsap.context(() => {
+        const panels = panelsRef.current.filter(p => p !== null)
         
-        if (heading) {
-          gsap.from(heading, {
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: () => `top+=${index * 200} top`,
-              end: () => `top+=${index * 200 + 400} top`,
-              scrub: 1
-            },
-            opacity: 0,
-            y: 50
-          })
-        }
+        if (!horizontalRef.current || panels.length === 0) return
         
-        if (content) {
-          gsap.from(content, {
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: () => `top+=${index * 200 + 100} top`,
-              end: () => `top+=${index * 200 + 500} top`,
-              scrub: 1
-            },
-            opacity: 0,
-            y: 30
-          })
-        }
-      })
-    }, sectionRef)
+        // Force recalculate dimensions
+        ScrollTrigger.refresh()
+        
+        const totalWidth = horizontalRef.current.scrollWidth
+        const windowWidth = window.innerWidth
+        const scrollDistance = totalWidth - windowWidth
+        
+        // Horizontal scroll animation - minimal scroll distance
+        gsap.to(horizontalRef.current, {
+          x: -scrollDistance,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: () => `+=${scrollDistance * 0.3}`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          }
+        })
+      }, sectionRef)
+      
+      return ctx
+    }
 
-    return () => ctx.revert()
+    // Wait a bit for images to start loading
+    const timer = setTimeout(() => {
+      const ctx = initScrollTrigger()
+      
+      // Refresh after another delay
+      setTimeout(() => ScrollTrigger.refresh(), 500)
+      
+      return () => ctx?.revert()
+    }, 200)
+    
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -83,12 +72,15 @@ export default function NotATree() {
           <div className={styles.panelInner}>
             <div className={styles.panelLabel}>STAGE_01</div>
             <h3>THE FIRST SKETCH</h3>
-            <div className="panel-content">
+            <div className={styles.panelContent}>
               <div className={styles.visualBox}>
                 <img 
-                  src="/images/mat1.jpeg" 
+                  src="/images/rascunho.jpeg" 
                   alt="Initial Concept Sketch"
                   className={styles.panelImage}
+                  width="800"
+                  height="600"
+                  loading="eager"
                 />
                 <div className={styles.visualLabel}>Initial Concept</div>
               </div>
@@ -100,40 +92,72 @@ export default function NotATree() {
           </div>
         </div>
 
-        {/* Panel 2: Second Iteration */}
+        {/* Panel 2: Design Adaptation */}
         <div ref={el => panelsRef.current[1] = el} className={styles.panel}>
           <div className={styles.panelInner}>
             <div className={styles.panelLabel}>STAGE_02</div>
-            <h3>REFINEMENT</h3>
-            <div className="panel-content">
+            <h3>DESIGN ADAPTATION</h3>
+            <div className={styles.panelContent}>
               <div className={styles.visualBox}>
                 <img 
                   src="/images/mod1.jpeg" 
-                  alt="3D Modulation"
+                  alt="Design Adaptation"
                   className={styles.panelImage}
+                  width="800"
+                  height="600"
+                  loading="eager"
                 />
-                <div className={styles.visualLabel}>Technical Drawing</div>
+                <div className={styles.visualLabel}>3D Model</div>
               </div>
               <p className={styles.panelText}>
-                Engineering constraints became design features. 
-                <strong> Modular assembly. Weatherproof enclosures. Visible power routing.</strong>
-                Form follows function. Beauty emerges from necessity.
+                Adapting the concept to reality.
+                <strong> Engineering constraints. Material limitations. Urban regulations.</strong>
+                The design evolves. The vision remains.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Panel 3: End Product / Built */}
+        {/* Panel 3: Material Pickup */}
         <div ref={el => panelsRef.current[2] = el} className={styles.panel}>
           <div className={styles.panelInner}>
             <div className={styles.panelLabel}>STAGE_03</div>
+            <h3>MATERIAL ARRIVED</h3>
+            <div className={styles.panelContent}>
+              <div className={styles.visualBox}>
+                <img 
+                  src="/images/mat1.jpeg" 
+                  alt="Materials Pickup"
+                  className={styles.panelImage}
+                  width="800"
+                  height="600"
+                  loading="eager"
+                />
+                <div className={styles.visualLabel}>Production Complete</div>
+              </div>
+              <p className={styles.panelText}>
+                After production, materials arrive.
+                <strong> Precision fabricated. Quality checked. Ready for assembly.</strong>
+                From factory to field.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Panel 4: Installed */}
+        <div ref={el => panelsRef.current[3] = el} className={styles.panel}>
+          <div className={styles.panelInner}>
+            <div className={styles.panelLabel}>STAGE_04</div>
             <h3>NOT A TREE</h3>
-            <div className="panel-content">
+            <div className={styles.panelContent}>
               <div className={styles.visualBox}>
                 <img 
                   src="/images/im1.jpeg" 
                   alt="Not A Tree Installation"
                   className={styles.panelImage}
+                  width="800"
+                  height="600"
+                  loading="eager"
                 />
                 <div className={styles.visualLabel}>Installed Structure</div>
               </div>
@@ -146,81 +170,20 @@ export default function NotATree() {
           </div>
         </div>
 
-        {/* Panel 4: What We Want */}
-        <div ref={el => panelsRef.current[3] = el} className={styles.panel}>
-          <div className={styles.panelInner}>
-            <div className={styles.panelLabel}>VISION</div>
-            <h3>WHAT WE WANT</h3>
-            <div className="panel-content">
-              <div className={styles.visionGrid}>
-                <div className={styles.visionItem}>
-                  <span className={styles.visionIcon}>◆</span>
-                  <span>Public technology that doesn't apologize</span>
-                </div>
-                <div className={styles.visionItem}>
-                  <span className={styles.visionIcon}>◆</span>
-                  <span>Infrastructure as artistic expression</span>
-                </div>
-                <div className={styles.visionItem}>
-                  <span className={styles.visionIcon}>◆</span>
-                  <span>Operational beauty in urban space</span>
-                </div>
-                <div className={styles.visionItem}>
-                  <span className={styles.visionIcon}>◆</span>
-                  <span>Data collection that citizens can see</span>
-                </div>
-              </div>
-              <p className={styles.panelText}>
-                <strong>Art × Engineering × Public Space.</strong> Not decoration. Not surveillance. 
-                Visible systems serving visible functions.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Panel 5: What We Expect */}
+        {/* Panel 5: Live Data */}
         <div ref={el => panelsRef.current[4] = el} className={styles.panel}>
           <div className={styles.panelInner}>
-            <div className={styles.panelLabel}>IMPACT</div>
-            <h3>WHAT WE EXPECT</h3>
-            <div className="panel-content">
-              <div className={styles.expectGrid}>
-                <div className={styles.expectItem}>
-                  <span className={styles.expectValue}>99.4%</span>
-                  <span className={styles.expectLabel}>Uptime</span>
-                </div>
-                <div className={styles.expectItem}>
-                  <span className={styles.expectValue}>12</span>
-                  <span className={styles.expectLabel}>Active Sensors</span>
-                </div>
-                <div className={styles.expectItem}>
-                  <span className={styles.expectValue}>24/7</span>
-                  <span className={styles.expectLabel}>Data Stream</span>
-                </div>
-                <div className={styles.expectItem}>
-                  <span className={styles.expectValue}>∞</span>
-                  <span className={styles.expectLabel}>Public Access</span>
-                </div>
-              </div>
-              <p className={styles.panelText}>
-                Continuous operation. Transparent data. Public accountability.
-                <strong> Technology that works. Infrastructure that doesn't fail.</strong>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Panel 6: Live Data CTA */}
-        <div ref={el => panelsRef.current[5] = el} className={styles.panel}>
-          <div className={styles.panelInner}>
-            <div className={styles.panelLabel}>LIVE_NOW</div>
+            <div className={styles.panelLabel}>LIVE_DATA</div>
             <h3>SEE IT IN ACTION</h3>
-            <div className="panel-content">
+            <div className={styles.panelContent}>
               <div className={styles.dataPreview}>
                 <img 
                   src="/images/im2.jpeg" 
                   alt="Live Data Visualization"
                   className={styles.panelImage}
+                  width="1600"
+                  height="900"
+                  loading="eager"
                 />
                 <div className={styles.visualLabel}>Real-time Data</div>
               </div>
@@ -229,10 +192,7 @@ export default function NotATree() {
                 <strong> Live environmental readings from the urban core.</strong>
               </p>
               <a href="https://notatree.site/" target="_blank" rel="noopener noreferrer" className={styles.liveDataButton}>
-                <img 
-                  src="/images/button.png" 
-                  alt="View Live Data"
-                />
+                CLICK FOR LIVE DATA
               </a>
             </div>
           </div>
