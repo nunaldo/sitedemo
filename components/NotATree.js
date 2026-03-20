@@ -1,16 +1,20 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import styles from './NotATree.module.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const stages = ['Sketch', 'Adaptation', 'Fabrication', 'Installed', 'Live Data']
+
 export default function NotATree() {
   const sectionRef = useRef(null)
   const horizontalRef = useRef(null)
   const panelsRef = useRef([])
+  const activeStageRef = useRef(0)
+  const [activeStage, setActiveStage] = useState(0)
 
   useEffect(() => {    
     const initScrollTrigger = () => {
@@ -25,6 +29,11 @@ export default function NotATree() {
         const totalWidth = horizontalRef.current.scrollWidth
         const windowWidth = window.innerWidth
         const scrollDistance = totalWidth - windowWidth
+        const panelCount = panels.length
+        const snapStep = panelCount > 1 ? 1 / (panelCount - 1) : 1
+        const scrollLength = Math.max(scrollDistance * 1.35, window.innerHeight * 3.5)
+        activeStageRef.current = 0
+        setActiveStage(0)
         
         // Horizontal scroll animation - minimal scroll distance
         gsap.to(horizontalRef.current, {
@@ -33,10 +42,22 @@ export default function NotATree() {
           scrollTrigger: {
             trigger: sectionRef.current,
             start: 'top top',
-            end: () => `+=${scrollDistance * 0.3}`,
-            scrub: 1,
+            end: () => `+=${scrollLength}`,
+            scrub: 1.2,
             pin: true,
             anticipatePin: 1,
+            snap: {
+              snapTo: snapStep,
+              duration: { min: 0.2, max: 0.45 },
+              ease: 'power1.inOut'
+            },
+            onUpdate: (self) => {
+              const nextStage = Math.round(self.progress * (panelCount - 1))
+              if (nextStage !== activeStageRef.current) {
+                activeStageRef.current = nextStage
+                setActiveStage(nextStage)
+              }
+            },
             invalidateOnRefresh: true,
           }
         })
@@ -63,6 +84,18 @@ export default function NotATree() {
       {/* Fixed Title - only visible during this section */}
       <div className={styles.fixedTitle}>
         <h2>NOT A TREE</h2>
+        <p>From first sketch to live urban infrastructure</p>
+        <div className={styles.stageIndex} aria-label="Not A Tree process timeline">
+          {stages.map((stage, index) => (
+            <div
+              key={stage}
+              className={`${styles.stageItem} ${activeStage === index ? styles.stageItemActive : ''}`}
+            >
+              <span className={styles.stageDot} />
+              <span className={styles.stageName}>{stage}</span>
+            </div>
+          ))}
+        </div>
       </div>
       
       <div ref={horizontalRef} className={styles.horizontalWrapper}>

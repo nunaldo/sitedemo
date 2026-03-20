@@ -53,14 +53,16 @@ export default function Designs() {
 
         <div ref={ctaRef} className={styles.ctaBox}>
           <h3 className={styles.ctaTitle}>MAKE IT YOUR OWN</h3>
-          <p className={styles.ctaText}>
-            Every installation is unique. Every context is different.
-            <strong> We adapt our technology to your space, your needs, your vision.</strong>
-          </p>
-          <p className={styles.ctaSubtext}>
-            Urban infrastructure doesn't have to be invisible. 
-            It doesn't have to be ugly. It can be honest, functional, and beautiful.
-          </p>
+          <div className={styles.ctaText}>
+            <p className={styles.ctaLine}>Every installation is unique.</p>
+            <p className={styles.ctaLine}>Every context is different.</p>
+            <p className={styles.ctaLineStrong}>We adapt our technology to your space, your needs, your vision.</p>
+          </div>
+          <div className={styles.ctaSubtext}>
+            <p className={styles.ctaSubLine}>Urban infrastructure doesn't have to be invisible.</p>
+            <p className={styles.ctaSubLine}>It doesn't have to be ugly.</p>
+            <p className={styles.ctaSubLine}>It can be honest, functional, and beautiful.</p>
+          </div>
         </div>
       </div>
     </section>

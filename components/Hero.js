@@ -51,6 +51,15 @@ export default function Hero() {
         delay: 1.5
       })
 
+      gsap.from('.intro-line', {
+        opacity: 0,
+        y: 24,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: 'power2.out',
+        delay: 0.9
+      })
+
       // Subtitle chaos
       gsap.from('.subtitle-line', {
         opacity: 0,
@@ -91,6 +100,12 @@ export default function Hero() {
         <h1 ref={titleRef} className={styles.title}>
           UM NOME FIXE E INOVADOR
         </h1>
+
+        <div className={styles.introStatement}>
+          <p className="intro-line">Where <strong>ART MEETS ENGINEERING.</strong></p>
+          <p className="intro-line">Each installation operates independently.</p>
+          <p className="intro-line">Together they form collective urban intelligence.</p>
+        </div>
         
         <div className={styles.subtitle}>
           <span className="subtitle-line">ART</span>

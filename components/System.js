@@ -10,23 +10,23 @@ gsap.registerPlugin(ScrollTrigger)
 const modules = [
   {
     title: 'ARTISTIC INSTALLATIONS',
-    description: 'Sculptural infrastructure in public space. Art meets engineering. Form and function converge in permanent urban presence.',
-    accent: 'var(--color-accent)'
+    description: 'These installations are designed as permanent urban structures where form and utility coexist naturally. Instead of hiding the technical layer, the project makes engineering visible as part of the artistic language, creating pieces that are both expressive and operational in daily public space.',
+    accent: 'var(--system-accent-1)'
   },
   {
     title: 'ENVIRONMENTAL SENSING',
-    description: 'Continuous measurement systems. Air quality, temperature, humidity. Data as creative material. Technology as medium.',
-    accent: 'var(--color-accent-2)'
+    description: 'A continuous sensing system captures air quality, temperature and humidity across the site, producing a reliable environmental baseline. The collected data supports technical decisions while also acting as creative material for how the installation communicates with people in the city.',
+    accent: 'var(--system-accent-2)'
   },
   {
     title: 'ENERGY SYSTEMS',
-    description: 'Grid-connected power generation. Storage. Real-time management. Engineering infrastructure expressed artistically.',
-    accent: 'var(--color-accent-3)'
+    description: 'Energy generation, storage and grid integration are managed as one coordinated system in real time. This allows the structure to remain efficient and resilient while presenting its infrastructure clearly, so performance and design intention evolve together instead of competing.',
+    accent: 'var(--system-accent-3)'
   },
   {
     title: 'DATA NETWORKS',
-    description: 'Distributed sensor architecture. Open protocols for urban research. Art x engineering x public information.',
-    accent: 'var(--color-accent)'
+    description: 'Distributed communication between sensors enables robust operation and scalable deployment across different contexts. Through open protocols, the network becomes a shared layer between art, engineering and public information, supporting research, transparency and long-term urban learning.',
+    accent: 'var(--system-accent-1)'
   }
 ]
 
@@ -49,7 +49,7 @@ export default function System() {
         y: 50
       })
 
-      // Module assembly animation - more chaotic
+      // Controlled reveal to match the cleaner visual direction.
       moduleRefs.current.forEach((module, index) => {
         gsap.from(module, {
           scrollTrigger: {
@@ -59,37 +59,8 @@ export default function System() {
             scrub: 1
           },
           opacity: 0,
-          y: gsap.utils.random(80, 150),
-          x: index % 2 === 0 ? -50 : 50,
-          rotation: gsap.utils.random(-8, 8),
-          scale: 0.8
-        })
-
-        // Glitch on scroll
-        gsap.to(module, {
-          scrollTrigger: {
-            trigger: module,
-            start: 'top 60%',
-            toggleActions: 'play none none reverse'
-          },
-          boxShadow: `0 0 30px ${modules[index].accent}`,
-          duration: 0.3,
-          ease: 'power2.out'
-        })
-      })
-
-      // Grid connector lines
-      const connectors = document.querySelectorAll(`.${styles.connector}`)
-      connectors.forEach((connector, i) => {
-        gsap.from(connector, {
-          scrollTrigger: {
-            trigger: connector,
-            start: 'top 80%',
-            end: 'top 50%',
-            scrub: 1.5
-          },
-          scaleY: 0,
-          transformOrigin: 'top center'
+          y: 60 + index * 8,
+          scale: 0.96
         })
       })
     }, sectionRef)
@@ -123,8 +94,13 @@ export default function System() {
         </div>
 
         <div className={styles.systemStatement}>
-          <p>
-            Where <strong>ART MEETS ENGINEERING.</strong> Each installation operates independently. 
+          <p className={styles.systemStatementLine}>
+            Where <strong>ART MEETS ENGINEERING.</strong>
+          </p>
+          <p className={styles.systemStatementLine}>
+            Each installation operates independently.
+          </p>
+          <p className={styles.systemStatementLine}>
             Together they form collective urban intelligence.
           </p>
         </div>

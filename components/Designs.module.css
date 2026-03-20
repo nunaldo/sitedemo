@@ -67,11 +67,21 @@
   margin-bottom: calc(var(--spacing-unit) * 4);
 }
 
-.ctaText strong {
+.ctaLine {
+  margin: 0;
+}
+
+.ctaLine + .ctaLine,
+.ctaLine + .ctaLineStrong,
+.ctaLineStrong + .ctaLine,
+.ctaLineStrong + .ctaLineStrong {
+  margin-top: calc(var(--spacing-unit) * 1.25);
+}
+
+.ctaLineStrong {
+  margin: 0;
   color: var(--color-text);
   font-weight: 700;
-  display: block;
-  margin-top: calc(var(--spacing-unit) * 2);
 }
 
 .ctaSubtext {
@@ -79,6 +89,14 @@
   line-height: 1.8;
   color: var(--color-text-muted);
   font-style: italic;
+}
+
+.ctaSubLine {
+  margin: 0;
+}
+
+.ctaSubLine + .ctaSubLine {
+  margin-top: calc(var(--spacing-unit) * 0.9);
 }
 
 @media (max-width: 768px) {
