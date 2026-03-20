@@ -11,17 +11,17 @@ const principles = [
   {
     id: 'technical-core',
     title: 'Shared Technical Core',
-    description: 'Common sensor platform. Unified data protocols. Artistic expression through engineering constraint. Modular hardware enabling rapid deployment.'
+    description: 'All installations are built on a shared sensor platform with unified data protocols, so each deployment can adapt to a different place without losing consistency in performance. This common technical base creates room for artistic variation while keeping engineering decisions coherent and reliable across contexts.'
   },
   {
     id: 'measurement',
     title: 'Measurement as Medium',
-    description: 'Standardized calibration procedures. Cross-validation between nodes. Data collection as creative practice. Art x engineering methodology.'
+    description: 'Measurement is treated as both infrastructure and creative language: calibration is standardized, nodes are continuously cross-validated, and collected data is interpreted as material for design. In practice, this means artistic expression and technical rigor are developed in the same workflow instead of in separate stages.'
   },
   {
     id: 'operational',
     title: 'Operational Learning',
-    description: 'Field performance shapes design iteration. Public interaction patterns inform placement. Engineering and artistic decisions evolve together.'
+    description: 'Each installation keeps learning after deployment through field performance and public interaction, and those observations feed the next design iteration. Placement strategies, engineering adjustments, and aesthetic decisions are refined together, making the methodology cumulative over time.'
   }
 ]
 

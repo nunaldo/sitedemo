@@ -100,6 +100,7 @@
   color: var(--color-text);
   font-weight: 900;
   letter-spacing: 0.05em;
+  margin-bottom: calc(var(--spacing-unit) * 5);
 }
 
 .subtitle span {

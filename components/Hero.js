@@ -101,12 +101,6 @@ export default function Hero() {
           UM NOME FIXE E INOVADOR
         </h1>
 
-        <div className={styles.introStatement}>
-          <p className="intro-line">Where <strong>ART MEETS ENGINEERING.</strong></p>
-          <p className="intro-line">Each installation operates independently.</p>
-          <p className="intro-line">Together they form collective urban intelligence.</p>
-        </div>
-        
         <div className={styles.subtitle}>
           <span className="subtitle-line">ART</span>
           <span className="subtitle-line">×</span>
@@ -115,6 +109,12 @@ export default function Hero() {
           <span className="subtitle-line">ENERGY</span>
           <span className="subtitle-line">×</span>
           <span className="subtitle-line">DATA</span>
+        </div>
+        
+        <div className={styles.introStatement}>
+          <p className="intro-line">Where <strong>ART MEETS ENGINEERING.</strong></p>
+          <p className="intro-line">Each installation operates independently.</p>
+          <p className="intro-line">Together they form collective urban intelligence.</p>
         </div>
       </div>
 
