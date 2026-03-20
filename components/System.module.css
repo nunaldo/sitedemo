@@ -97,12 +97,17 @@
   text-transform: uppercase;
 }
 
-.moduleDescription {
+.modulePoints {
+  margin: 0;
+  padding-left: calc(var(--spacing-unit) * 2.5);
+  flex: 1;
+}
+
+.modulePoint {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text-muted);
-  flex: 1;
-  max-width: none;
+  margin-bottom: calc(var(--spacing-unit) * 1.1);
 }
 
 .systemStatement {
